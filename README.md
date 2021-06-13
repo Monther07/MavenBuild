@@ -6,7 +6,7 @@ mvn clean package
 
 Artifact will be created in target folder.
 
-docker build -t mavenbuild .
+docker build -t mavenbuild.
 
 Once this is done u will be see image using docker images
 
