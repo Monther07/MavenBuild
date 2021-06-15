@@ -16,26 +16,26 @@ node('master') {
 node('slave1') {
 	
 	  
-	  stage ('Test Cases Execution'){
+	stage ('Test Cases Execution'){
 		  sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
-	  }
+	}
   	
 	 
-  }
+}
   
 
   node('slave2') {
 	  
-		stage ('Archive Artifacts'){
+	stage ('Archive Artifacts'){
 			archiveArtifacts artifacts: 'target/*.war'
-		}
+	}
   	
-		stage ('Notification'){
+	stage ('Notification'){
 			//slackSend color: 'good', message: 'Deployment Sucessful'
 			emailext (
 				  subject: "Job Completed",
 				  body: "Jenkins Pipeline Job for Maven Build got completed !!!",
 				  to: "monther.g.07@gmail.com"
 				)
-		}
-  }
+	}
+}
