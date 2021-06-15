@@ -12,7 +12,7 @@ node('master')
 		
 		stage ('Build')
 		{
-			sh "mvn clean install"
+			//sh "mvn clean install -Dmaven.test.skip=true"
 		}
 	
  	}
@@ -37,7 +37,7 @@ node('slave2')
 	  
 	stage ('Archive Artifacts')
 	{
-			//archiveArtifacts artifacts: 'target/*.war'
+			archiveArtifacts artifacts: 'target/*.war'
 	}
   	
 	stage ('Notification')
