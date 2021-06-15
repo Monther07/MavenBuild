@@ -1,10 +1,10 @@
-node('master') {
+node('allSlave') {
   ansiColor('xterm') {
 	stage ('checkout code'){
 		checkout scm
 	}
 	
-	  node('slave1') {
+	
 	stage ('Build'){
 		sh "mvn clean install -Dmaven.test.skip=true"
 	}
@@ -17,8 +17,7 @@ node('master') {
 	stage ('Sonar Analysis'){
 		//sh 'mvn sonar:sonar -Dsonar.host.url=http://35.153.67.119:9000 -Dsonar.login=77467cfd2653653ad3b35463fbfdb09285f08be5'
 	}
-		    }
-node('slave2') {
+
 	stage ('Archive Artifacts'){
 		archiveArtifacts artifacts: 'target/*.war'
 	}
@@ -38,7 +37,7 @@ node('slave2') {
 		      to: "anuj_sharma401@yahoo.com"
 		    )
 	}
-	}
+	
    }
 }
 
