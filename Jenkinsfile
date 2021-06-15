@@ -14,18 +14,17 @@ node('master') {
 
 
 node('slave1') {
-	ansiColor('xterm') {
+	
 	  
 	  stage ('Test Cases Execution'){
 		  sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
 	  }
   	
-	 }
+	 
   }
   
 
   node('slave2') {
-	ansiColor('xterm') {
 	  
 		stage ('Archive Artifacts'){
 			archiveArtifacts artifacts: 'target/*.war'
@@ -39,5 +38,4 @@ node('slave1') {
 				  to: "monther.g.07@gmail.com"
 				)
 		}
-	 }
   }
