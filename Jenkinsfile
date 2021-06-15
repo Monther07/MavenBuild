@@ -1,6 +1,9 @@
 node('master') 
 {
- 
+  ansiColor('xterm') 
+  	{
+	
+	
 		stage ('checkout code')
 		{
 			checkout scm
@@ -11,7 +14,8 @@ node('master')
 		{
 			sh "mvn clean install -Dmaven.test.skip=true"
 		}
-	 
+	
+ 	}
 }
 
 
